@@ -1,6 +1,7 @@
 # models.py
 from django.db import models
 from django.conf import settings
+
 from django.shortcuts import render
 
 
@@ -42,6 +43,7 @@ class Valve(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.motor.name}"
+
 
 
 

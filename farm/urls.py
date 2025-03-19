@@ -1,3 +1,4 @@
+
 from django.urls import path
 
 
@@ -20,3 +21,4 @@ urlpatterns = [
 
     path('farm-html-CRUD/', farm_management, name='farm-management'),
 ]
+

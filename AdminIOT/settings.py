@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Add your apps here
+    'corsheaders',
     'accounts',
     'motors',
     'farm',
@@ -55,12 +55,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',  # Session authentication
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',  # Allows access to all users
+        'rest_framework.permissions.IsAuthenticated',  # Allows access to all users
+
     ],
 }
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,7 +70,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
- 
 ]
 
 ROOT_URLCONF = 'AdminIOT.urls'
@@ -102,7 +103,8 @@ DATABASES = {
         'USER': 'postgres',  # Default PostgreSQL user
         'PASSWORD': '123456',  # Set during PostgreSQL installation
         'HOST': 'localhost',  # Keep localhost for local development
-        # 'PORT': '5432',  # Default PostgreSQL port
+        'PORT': '5432',  # Default PostgreSQL port
+
     }
 }
 
@@ -149,4 +151,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 AUTH_USER_MODEL = 'accounts.User'
+# Not recommended to store plaintext passwords
+MASTER_ADMIN_PASSWORD = 'your_secure_password_here'
+
